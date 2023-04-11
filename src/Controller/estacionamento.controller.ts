@@ -1,18 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Put } from '@nestjs/common';
+import { EstacionamentoService } from 'src/Service/estacionamento.service';
 
 @Controller('/estacionamento')
 export class EstacionamentoController {
+  constructor(private estacionamentoService: EstacionamentoService) {}
+
   @Get('/veiculos')
   findAll() {
-    return [
-      {
-        id: 1,
-        veiculo: 'Carro',
-      },
-      {
-        id: 2,
-        veiculo: 'Moto',
-      },
-    ];
+    return this.estacionamentoService.findAll();
   }
 }
